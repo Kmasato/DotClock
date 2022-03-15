@@ -11,8 +11,6 @@ void startWiFi(void);
 const char* ssid = SSID;
 const char* password = WIFI_PASSWORD;
 
-
-
 void setup() {
   Serial.begin(115200);
   Serial.print("WiFi is connecting.");
@@ -31,10 +29,8 @@ void loop() {
   t = time(NULL);
   tm = localtime(&t);
 
-  Serial.println(tm->tm_year + 1900);
-  Serial.println(tm->tm_mon + 1);
-  Serial.println(tm->tm_mday);
-  Serial.println(wd[tm->tm_wday]);
+  Serial.printf("%d/%d/%d [%s] \n",tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday, wd[tm->tm_wday]);
+  Serial.printf("%d:%d:%d\n", tm->tm_hour, tm->tm_min, tm->tm_sec);
   delay(1000);
 }
 
