@@ -40,6 +40,8 @@ void setup() {
   startWiFi();
   configTime(JST,0,"ntp.nict.jp", "ntp.jst.mfeed.ad.jp");
 
+  mx.begin();
+
 }
 
 void loop() {
@@ -54,16 +56,20 @@ void loop() {
   Serial.printf("%d:%d:%d\n", tm->tm_hour, tm->tm_min, tm->tm_sec);
   delay(1000);
 
-  myCanvas.writeFastHLine(2,2,2,0x01);
+  //myCanvas.writeFastHLine(2,2,10,0x01);
+  //myCanvas.drawCircle(7,7,5,0x01);
 
-  //mx.clear();
+  myCanvas.setTextSize(1);
+  myCanvas.drawChar(0,0,'A',0x01,0,1);
+
+  mx.clear();
 
   for (int i = 0; i < 16; i++){
     for(int j=0; j < 16; j++){
-      Serial.print(myCanvas.getPixel(i,j));
-      //setPoint(i,j,myCanvas.getPixel(i,j));
+      //Serial.print(myCanvas.getPixel(i,j));
+      setPoint(i,j,myCanvas.getPixel(i,j));
     }
-    Serial.println();
+    //Serial.println();
   }
   
 }
